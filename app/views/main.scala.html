@@ -1,0 +1,27 @@
+@(title: String)(content: Html)
+
+<!DOCTYPE html>
+
+<html>
+    <head>
+        <title>@title</title>
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/bootstrap/css/bootstrap.css")">
+        <link rel="stylesheet" media="screen" href="@routes.Assets.at("lib/jquery-ui/css/smoothness/jquery-ui-1.9.2.custom.css")">
+        <script src="//ajax.googleapis.com/ajax/libs/jquery/2.0.2/jquery.min.js"></script>
+        <script src="@routes.Assets.at("lib/jquery-ui/js/jquery-ui-1.9.2.custom.js")"></script>
+        <script src="@routes.Assets.at("lib/bootstrap/js/bootstrap.js")"></script>
+        <script src="@routes.Assets.at("javascripts/app.js")"></script>
+    </head>
+    <body>
+        <div class="container">
+            @header()
+            @content
+        </div>
+
+        <script type="text/javascript">
+                new AM.Main().init();
+        </script>
+
+
+    </body>
+</html>

@@ -1,0 +1,28 @@
+@import play.api.libs.json.JsValue
+@import play.api.libs.json.JsDefined
+@import play.api.libs.json.JsUndefined
+@(reportTitle: String, reportJson: JsValue)(implicit req: RequestHeader)
+@main(reportTitle) {
+    <div class="row">
+        <div class="col-md-5">
+            <h4 id="report-title">@reportTitle</h4>
+            <table class="table table-bordered" id="airports" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Runway Identification</th>
+                        <th>Count</th>
+                    </tr>
+                </thead>
+                @for(json <- reportJson.as[List[JsValue]]) {
+                    <tr>
+                        <td>@((json \ "_id")) match {
+                            case JsDefined(id) => {@id.toString}
+                            case JsUndefined() => {}
+                        }</td>
+                        <td>@((json \ "count").as[Int])</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}

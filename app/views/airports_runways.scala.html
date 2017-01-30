@@ -1,0 +1,45 @@
+@import play.api.libs.json.JsValue
+@(reportTitle: String, reportJson: JsValue)
+
+@main(reportTitle) {
+    <div class="row">
+        <div class="col-md-6">
+            <h4 id="report-title">@reportTitle</h4>
+            <table class="table table-bordered" id="airports" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Runways</th>
+                    </tr>
+                </thead>
+                @for(airport <- reportJson.as[List[JsValue]]) {
+                    <tr>
+                        <td>@((airport \ "name").as[String])</td>
+                        <td>@((airport \ "type").as[String])</td>
+                        <td>
+                            <table class="table table-bordered" id="runways" cellspacing="0" width="100%">
+                                <thead>
+                                    <tr>
+                                        <th>Surface</th>
+                                        <th>Lighted</th>
+                                    </tr>
+                                </thead>
+                                @for(runways <- ((airport \ "runways").as[List[JsValue]])){
+                                    <tr>
+                                        <td>@((runways \ "surface").as[String])</td>
+                                        <td>@((runways \ "lighted").as[Int]) match {
+                                            case 0 => {yes}
+                                            case 1 => {no}
+                                        }</td>
+                                    </tr>
+                                }
+                            </table>
+                        </td>
+                    </tr>
+                }
+            </table>
+
+        </div>
+    </div>
+}

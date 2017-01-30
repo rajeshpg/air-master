@@ -1,0 +1,24 @@
+@import play.api.libs.json.JsValue
+@(reportTitle: String,reportJson: JsValue)(implicit req: RequestHeader)
+
+@main(reportTitle) {
+    <div class="row">
+        <div class="col-md-8">
+            <h4 id="report-title">@reportTitle</h4>
+            <table class="table table-bordered" id="airports" cellspacing="0" width="100%">
+                <thead>
+                    <tr>
+                        <th>Country</th>
+                        <th>Surfaces</th>
+                    </tr>
+                </thead>
+                @for(json <- reportJson.as[List[JsValue]]){
+                    <tr>
+                        <td class="col-md-4">@((json\"_id").as[String])</td>
+                        <td>@((json\"surface").as[List[String]].mkString(", "))</td>
+                    </tr>
+                }
+            </table>
+        </div>
+    </div>
+}
