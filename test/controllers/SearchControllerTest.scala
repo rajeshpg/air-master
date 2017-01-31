@@ -1,6 +1,5 @@
 package controllers
 
-import database.MongoClient
 import org.jsoup.Jsoup
 import org.specs2.mock.Mockito
 import play.api.libs.json.{JsObject, JsValue, Json}
