@@ -10,16 +10,16 @@ import repository.ReportRepository
 import scala.concurrent.ExecutionContext.Implicits.global
 
 @Singleton
-class ReportsController @Inject()(reportRepository: ReportRepository) extends Controller {
+class Reports @Inject()(reportRepository: ReportRepository) extends Controller {
 
-  def getCountriesWithHigestAirports: Action[AnyContent] = Action.async { implicit request =>
+  def getCountriesWithMoreAirports: Action[AnyContent] = Action.async { implicit request =>
     reportRepository.findCountriesWithHighestNoOfAirports.map { report => {
       Ok(views.html.reports.countries.airports("Countries with highest no of airports", Json.toJson(report)))
     }
     }
   }
 
-  def getCountriesWithLowestAirports: Action[AnyContent] = Action.async { implicit request =>
+  def getCountriesWithLessAirports: Action[AnyContent] = Action.async { implicit request =>
     reportRepository.findCountriesWithLowestNoOfAirports.map { report =>
       Ok(views.html.reports.countries.airports("Countries with lowest no of airports", Json.toJson(report)))
     }

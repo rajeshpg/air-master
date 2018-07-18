@@ -11,7 +11,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
-class CountryRepository @Inject()(mongoClient: MongoClient) {
+class Country @Inject()(mongoClient: MongoClient) {
 
   def findByCodeOrName(searchText: String): Future[List[JsObject]] = {
     val regex = Json.obj("$regex" -> s"""^$searchText""", "$options" -> "i")

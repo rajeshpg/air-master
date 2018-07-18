@@ -13,7 +13,7 @@ class SearchRepositoryIntegrationTest extends Specification with TestInjector{
 
   "Search repository " should {
     "fetch airpors and its runway details " in {
-      val countryRepository = getInjector.instanceOf[CountryRepository]
+      val countryRepository = getInjector.instanceOf[Country]
       val mongoClient = getInjector.instanceOf[MongoClient]
 
       val searchRepository = new SearchRepository(countryRepository, mongoClient)

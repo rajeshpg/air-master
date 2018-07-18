@@ -8,13 +8,13 @@ import utils.TestInjector
 import scala.concurrent.Await
 import scala.concurrent.duration.Duration
 
-class CountryRepositoryIntegrationTest extends Specification with TestInjector {
+class CountryIntegrationTest extends Specification with TestInjector {
 
   "Country reposostory " should {
     "fetch country details for given country code " in {
       val mongoClient = getInjector.instanceOf[MongoClient]
 
-      val countryRepository = new CountryRepository(mongoClient)
+      val countryRepository = new Country(mongoClient)
 
       val countryDetails = countryRepository.findByCodeOrName("qa")
 

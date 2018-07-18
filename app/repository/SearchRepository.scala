@@ -10,7 +10,7 @@ import scala.concurrent.ExecutionContext.Implicits.global
 import scala.concurrent.Future
 
 @Singleton
-class SearchRepository @Inject()(countryRepository: CountryRepository, mongoClient: MongoClient) {
+class SearchRepository @Inject()(countryRepository: Country, mongoClient: MongoClient) {
 
   def findAirportRunwaysByCountryCode(countryCode: String): Future[List[JsObject]] = {
     countryRepository.findByCodeOrName(countryCode).flatMap {
